@@ -61,18 +61,18 @@
 <li>定义满足接口实现的方法</li>
 </ol>
 
-<p>I would summarize this as “writing types to fulfil interfaces”. The artefacts of such a code smell is clear:</p>
+<p>我将这个概括为“编写类型以实现接口”。这种代码味道的人为因素很明显：</p>
 
 <ul>
-<li>The most obvious of which is that it has only one type that fulfils the interface with no obvious means of extension.</li>
-<li>Functions typically take concrete types instead of interface types.</li>
+<li>其中最明显的是它只有一种类型可以实现接口，而没有明显的扩展手段。</li>
+<li>函数通常采用具体的类型而不是接口类型。</li>
 </ul>
 
 <h2 id="正确的做法">正确的做法</h2>
 
-<p>Go interfaces encourages one to be lazy, and this is a good thing. Instead of writing types to fulfil interfaces, write interfaces to fulfil usage requirements.</p>
+<p>Go 接口鼓励人们懒惰，这是一件好事，而不是编写类型来完成接口，编写接口来满足使用需求。</p>
 
-<p>What I mean is this - instead of defining Animal in package animals, define it at point of use - in package circus.</p>
+<p>我的意思是这个 - 不是在 animals package 中定义 Animal，而是在 package circus 的使用点上定义它。</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">animals</span>
 
 <span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">Dog</span> <span style="color:#204a87;font-weight:bold">struct</span><span style="color:#000;font-weight:bold">{}</span>
@@ -83,14 +83,14 @@
 <span style="color:#000;font-weight:bold">}</span>
 
 <span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">Perform</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#000">Speaker</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">string</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Speaks</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">}</span></code></pre></div>
-<p>The more idiomatic way would be this:</p>
+<p>更舒适的方式是：</p>
 
 <ol>
-<li>Define the types</li>
-<li>Define the interface at point of use.</li>
+<li>定义类型</li>
+<li>在使用点定义接口</li>
 </ol>
 
-<p>This way shows a reduced dependency on the components of package animals. Reduced dependencies is how you build robust software.</p>
+<p>这种方式明显降低了对 package animals 的依赖。</p>
 
 <h2 id="伯斯塔尔法则">伯斯塔尔法则</h2>
 
@@ -99,24 +99,24 @@
 <p>通常的说法是这样的：</p>
 
 <blockquote>
-<p>“Be conservative with what you do, be liberal with you accept”</p>
+<p>&ldquo;Be conservative with what you do, be liberal with you accept&rdquo;</p>
 </blockquote>
 
 <p>如果翻译到 Go 语言的语境中：</p>
 
 <blockquote>
-<p>“Accept interfaces, return structs”</p>
+<p>&ldquo;Accept interfaces, return structs&rdquo;</p>
 </blockquote>
 
-<p>By and large, this is a very good maxim on designing things to be robust*. The main unit of code in Go is a function. The pattern to follow when designing functions/methods is the following:</p>
+<p>Go 中的主要代码单元是函数，设计函数/方法时应当遵循的以下的模式：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">funcName</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#000">INTERFACETYPE</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">CONCRETETYPE</span></code></pre></div>
-<p>Here we see we accept anything that implements an interface - could be any interface, or a blank one, and return a value that is a concrete value. Of course, there is value in constraining what a can be. As it goes in the Go proverbs,</p>
+<p>这里我们看到我们接受任何实现接口的东西 - 可以是任何接口或空白接口，并返回一个具体值。</p>
+
+<p>当然，限制参数 a 的具体类型是很有必要的，最好不要在函数中传入空白接口 interface{}，没有意义。</p>
 
 <blockquote>
-<p>“the empty interface says nothing“ - Rob Pike</p>
+<p>&ldquo;the empty interface says nothing&rdquo; - Rob Pike</p>
 </blockquote>
-
-<p>So it’s preferable not to have functions take interface{}.</p>
 
 <h2 id="使用案例-mocking">使用案例：Mocking</h2>
 
