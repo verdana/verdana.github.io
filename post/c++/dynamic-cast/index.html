@@ -291,17 +291,19 @@
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div>
-<h2 id="upcasting-and-downcasting">Upcasting and Downcasting</h2>
+<h2 id="向上转型和向下转型">向上转型和向下转型</h2>
 
-<p>Converting a derived-class reference or pointer to a base-class reference or pointer is called upcasting. It is always allowed for public inheritance without the need for an explicit type cast.</p>
+<p>将派生类引用或指针转换为基类引用或指针称为向上转型。 它始终允许公共继承，而不需要明确的类型转换。</p>
 
-<p>Actually this rule is part of expressing the is-a relationship. A Derived object is a Base object in that it inherits all the data members and member functions of a Base object. Thus, anything that we can do to a Base object, we can do to a Derived class object.</p>
+<p>其实这条规则是表达 is-a 关系的一部分。 派生对象是一个 Base 对象，它继承了 Base 对象的所有数据成员和成员函数。</p>
 
-<p>The downcasting, the opposite of upcasting, is a process converting a base-class pointer or reference to a derived-class pointer or reference.</p>
+<p>因此，任何我们可以对 Base 对象做的事情，也可以对它的派生类对象做同样的操作。</p>
 
-<p>It is not allowed without an explicit type cast. That&rsquo;s because a derived class could add new data members, and the class member functions that used these data members wouldn&rsquo;t apply to the base class.</p>
+<p>向下转换，与向上转换相反，是一个将基类指针或引用转换为派生类指针或引用的过程。</p>
 
-<p>Here is a self explanatory example</p>
+<p>没有明确类型的转换是不允许的。这是因为派生类可能会添加新的数据成员，并且使用这些数据成员的类成员函数将不适用于基类。</p>
+
+<p>这是一个自我解释的例子：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span>
 <span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
