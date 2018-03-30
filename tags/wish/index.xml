@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Wish on Verdana&#39;s Notebook</title>
-    <link>http://localhost:1313/tags/wish/</link>
+    <link>http://verdana.github.io/tags/wish/</link>
     <description>Recent content in Wish on Verdana&#39;s Notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>本作品采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by/4.0/&#34;&gt;知识共享署名 4.0 国际许可协议&lt;/a&gt;进行许可。</copyright>
     <lastBuildDate>Thu, 01 Mar 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:1313/tags/wish/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://verdana.github.io/tags/wish/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>2018年的一些规划</title>
-      <link>http://localhost:1313/post/2018-plans/</link>
+      <link>http://verdana.github.io/post/2018-plans/</link>
       <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/post/2018-plans/</guid>
+      <guid>http://verdana.github.io/post/2018-plans/</guid>
       <description>&lt;h3 id=&#34;期望一些改变&#34;&gt;期望一些改变&lt;/h3&gt;
 
 &lt;p&gt;2017 过去了，一切都是一团糟！&lt;/p&gt;
