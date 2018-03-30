@@ -136,13 +136,15 @@
 <li>递归接口</li>
 </ul>
 
-<p>Here I shall briefly visit each.</p>
+<p>在这里我将简要介绍一下。</p>
 
 <h2 id="封闭接口">封闭接口</h2>
 
 <p>Sealed interfaces can only be discussed in the context of having multiple packages. A sealed interface is an interface with unexported methods. This means users outside the package is unable to create types that fulfil the interface. This is useful for emulating a sum type as an exhaustive search for the types that fulfil the interface can be done.</p>
 
-<p>So what you’d define something like this:</p>
+<p>封闭接口只能在具有 package 的环境中讨论。封闭接口指的是没有导出任何方法的接口。这意味着 package 外部的用户无法创建满足界面的类型。这对于模拟总和类型非常有用，因为它可以完成可以完成接口的类型的详尽搜索。</p>
+
+<p>所以你要定义这样的东西：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">Fooer</span> <span style="color:#204a87;font-weight:bold">interface</span> <span style="color:#000;font-weight:bold">{</span>
 	<span style="color:#000">Foo</span><span style="color:#000;font-weight:bold">()</span>
 	<span style="color:#000">sealed</span><span style="color:#000;font-weight:bold">()</span>
