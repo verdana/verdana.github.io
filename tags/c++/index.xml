@@ -34,7 +34,7 @@
 &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;the-dynamic-cast-operator&#34;&gt;The dynamic_cast Operator&lt;/h2&gt;
+&lt;h2 id=&#34;dynamic-cast&#34;&gt;dynamic_cast&lt;/h2&gt;
 
 &lt;p&gt;尝试将一个对象转换成类型更具体的对象。&lt;/p&gt;</description>
     </item>
