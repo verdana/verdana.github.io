@@ -341,7 +341,7 @@
 
     <span style="color:#8f5902;font-style:italic">// Downcasting: unsafe - Employee does not have
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// the method, coding().
-</span><span style="color:#8f5902;font-style:italic"></span>       <span style="color:#8f5902;font-style:italic">// compile error: &#39;coding&#39; : is not a member of &#39;Employee&#39;
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// compile error: &#39;coding&#39; : is not a member of &#39;Employee&#39;
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// pEmp-&gt;coding();
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">pProg</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">coding</span><span style="color:#000;font-weight:bold">();</span>
 
@@ -352,10 +352,9 @@
 
 <p>typeid 能让我们检测两个对象是否相同。</p>
 
-<p>In the previous example for Upcasting and Downcasting, employee gets the method coding() which is not desirable.
-So, we need to check if a pointer is pointing to the Programmer object before we use the method, coding().</p>
+<p>在前面的转型的示例中，Employee 调用了不应该得到的方法 coding()。因此，在我们使用方法 coding() 之前，我们需要检查指针是否指向 Programmer 对象。</p>
 
-<p>Here is a new code showing how to use typeid:</p>
+<p>以下是显示如何使用typeid的新代码：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">private</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">id</span><span style="color:#000;font-weight:bold">;</span>
