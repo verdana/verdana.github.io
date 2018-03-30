@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Verdana's Notebook</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://localhost:1313/css/normalize.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/skeleton.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <header class="u-cf topinfo">
+    <code>@verdana</code>
+    
+    <code><span class="post-lastmod">2018, Mar 10</span></code>
+    
+    <code><span>Blogs </span><span class="article-characters">999</span></code>
+    <code><span>Views </span><span class="article-read">999</span></code>
+</header>
+
+
+        <article class="post-content">
+            <p>当我们从客户端向服务器发起 HTTP 请求时，服务器会向我们返回响应信息，其中头信息中包含的 HTTP 状态码会告诉我们服务器的状态。</p>
+
+<p>下面的表格中列出了一些在 Web Development 中常见的 HTTP 状态码。</p>
+
+<p></p>
+
+<table>
+<thead>
+<tr>
+<th align="left">状态码</th>
+<th align="left">响应类别</th>
+<th align="left">原因短语</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">1XX</td>
+<td align="left">信息性状态码（Informational）</td>
+<td align="left">服务器正在处理请求</td>
+</tr>
+
+<tr>
+<td align="left">2XX</td>
+<td align="left">成功状态码（Success）</td>
+<td align="left">请求已正常处理完毕</td>
+</tr>
+
+<tr>
+<td align="left">3XX</td>
+<td align="left">重定向状态码（Redirection）</td>
+<td align="left">需要进行额外操作以完成请求</td>
+</tr>
+
+<tr>
+<td align="left">4XX</td>
+<td align="left">客户端错误状态码（Client Error）</td>
+<td align="left">客户端原因导致服务器无法处理请求</td>
+</tr>
+
+<tr>
+<td align="left">5XX</td>
+<td align="left">服务器错误状态码（Server Error）</td>
+<td align="left">服务器原因导致处理请求出错</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="https://tools.ietf.org/html/rfc2616">RFC2616</a>（用来指定HTTP协议标准的文档）标准定义的就有四十多种，加上扩展能达到六十种，
+不过常见的大概只有十几种，下面列出一些有代表性的状态码。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">状态码</th>
+<th align="left">原因短语</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">200 OK</td>
+<td align="left">请求正常处理完毕</td>
+</tr>
+
+<tr>
+<td align="left">204 No Content</td>
+<td align="left">请求成功处理，没有实体的主体返回</td>
+</tr>
+
+<tr>
+<td align="left">206 Partial Content</td>
+<td align="left">GET范围请求已成功处理</td>
+</tr>
+
+<tr>
+<td align="left">301 Moved Permanently</td>
+<td align="left">永久重定向，资源已永久分配新URI</td>
+</tr>
+
+<tr>
+<td align="left">302 Found</td>
+<td align="left">临时重定向，资源已临时分配新URI</td>
+</tr>
+
+<tr>
+<td align="left">303 See Other</td>
+<td align="left">临时重定向，期望使用GET定向获取</td>
+</tr>
+
+<tr>
+<td align="left">304 Not Modified</td>
+<td align="left">请求的资源一直未变动</td>
+</tr>
+
+<tr>
+<td align="left">307 Temporary Redirect</td>
+<td align="left">临时重定向，POST不会变成GET</td>
+</tr>
+
+<tr>
+<td align="left">400 Bad Request</td>
+<td align="left">请求报文语法错误或参数错误</td>
+</tr>
+
+<tr>
+<td align="left">401 Unauthorized</td>
+<td align="left">需要通过HTTP认证，或认证失败</td>
+</tr>
+
+<tr>
+<td align="left">403 Forbidden</td>
+<td align="left">请求资源被拒绝</td>
+</tr>
+
+<tr>
+<td align="left">404 Not Found</td>
+<td align="left">无法找到请求资源（服务器无理由拒绝）</td>
+</tr>
+
+<tr>
+<td align="left">405 Method Not Allowed</td>
+<td align="left">请求资源不支持请求的方法</td>
+</tr>
+
+<tr>
+<td align="left">500 Internal Server Error</td>
+<td align="left">服务器故障或Web应用故障</td>
+</tr>
+
+<tr>
+<td align="left">502 Bad Gateway</td>
+<td align="left">服务器作为网关或代理从上游服务器接收到无效响应</td>
+</tr>
+
+<tr>
+<td align="left">503 Service Unavailable</td>
+<td align="left">服务器超负载或停机维护</td>
+</tr>
+
+<tr>
+<td align="left">504 Gateway Timeout</td>
+<td align="left">服务器作为网关或代理从上游服务器接收响应时超时</td>
+</tr>
+</tbody>
+</table>
+        </article>
+
+        <footer class="post-footer">
+            
+            <ul class="post-tags">
+                
+                <li>
+                    <a href="http://localhost:1313/tags/http"> <span class="tag">Http</span> </a>
+                </li>
+                
+                <li>
+                    <a href="http://localhost:1313/tags/web"> <span class="tag">Web</span> </a>
+                </li>
+                
+            </ul>
+            
+            <p class="post-copyright">
+                本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
+            </p>
+        </footer>
+    </div>
+
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1900757-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+</html>
+

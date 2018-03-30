@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Verdana's Notebook</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://localhost:1313/css/normalize.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/skeleton.css">
+    <link rel="stylesheet" href="http://localhost:1313/css/style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <header class="u-cf topinfo">
+    <code>@verdana</code>
+    
+    <code><span class="post-lastmod">2018, Mar 20</span></code>
+    
+    <code><span>Blogs </span><span class="article-characters">999</span></code>
+    <code><span>Views </span><span class="article-read">999</span></code>
+</header>
+
+
+        <article class="post-content">
+            <h2 id="rtti">RTTI</h2>
+
+<p>RTTI 全称运行时类型信息（Run-time Type Identification）。</p>
+
+<p>RTTI 提供了一个标准的方法用来检测运行时对象的类型。</p>
+
+<p>In other words, RTTI allows programs that use pointers or references to base classes to retrieve the actual derived types of the objects to which these pointers or references refer.</p>
+
+<p>RTTI 通过两种运算符来实现：</p>
+
+<ol>
+<li>typeid        返回指针或引用所绑定的对象的实际类型</li>
+<li>dynamic_cast  将基类指针或引用安全地转换为派生类的指针或引用
+</li>
+</ol>
+
+<h2 id="the-dynamic-cast-operator">The dynamic_cast Operator</h2>
+
+<p>尝试将一个对象转换成类型更具体的对象。</p>
+
+<p>下面的代码如果不明白，没有关系，后面会详细说明。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">A</span>
+<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">(){</span><span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;A::f()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;}</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">A</span>
+<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">(){</span><span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;B::f()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;}</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> 
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">A</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">B</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">a</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">();</span>        <span style="color:#8f5902;font-style:italic">// A::f()
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">b</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">();</span>        <span style="color:#8f5902;font-style:italic">// B::f()
+</span><span style="color:#8f5902;font-style:italic"></span>
+    <span style="color:#000">A</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pA</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pB</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">pA</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">();</span>      <span style="color:#8f5902;font-style:italic">// A::f()
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">pB</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">();</span>      <span style="color:#8f5902;font-style:italic">// B::f()
+</span><span style="color:#8f5902;font-style:italic"></span>
+    <span style="color:#000">pA</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#8f5902;font-style:italic">// pB = &amp;a;      // not allowed
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">pB</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">B</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">a</span><span style="color:#000;font-weight:bold">;);</span> <span style="color:#8f5902;font-style:italic">// allowed but it returns NULL
+</span><span style="color:#8f5902;font-style:italic"></span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>The dynamic_cast operator is intended to be the most heavily used RTTI component. It doesn&rsquo;t give us what type of object a pointer points to. Instead, it answers the question of whether we can safely assign the address of an object to a pointer of a particular type.</p>
+
+<p>Unlike other casts, a dynamic_cast involves a run-time type check. If the object bound to the pointer is not an object of the target type, it fails and the value is 0. If it&rsquo;s a reference type when it fails, then an exception of type bad_cast is thrown. So, if we want dynamic_cast to throw an exception (bad_cast) instead of returning 0, cast to a reference instead of to a pointer. Note also that the dynamic_cast is the only cast that relies on run-time checking.</p>
+
+<p>&ldquo;The need for dynamic_cast generally arises because you want to perform derived class operation on a derived class object, but you have only a pointer or reference-to-base&rdquo; said Scott Meyers in his book &ldquo;Effective C++&rdquo;.</p>
+
+<p>Let&rsquo;s look at the example code:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{};</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{};</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> 
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+ 
+<span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">Base</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
+  <span style="color:#000">Derived</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">;</span>
+
+  <span style="color:#000">Base</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Base</span> <span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">d</span><span style="color:#000;font-weight:bold">;);</span>        <span style="color:#8f5902;font-style:italic">// #1
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">b</span><span style="color:#000;font-weight:bold">;);</span>  <span style="color:#8f5902;font-style:italic">// #2
+</span><span style="color:#8f5902;font-style:italic"></span>
+  <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>#1 运行 OK，因为将一个类强制转换成其父类肯定是没有问题的。</p>
+
+<p>#2 则会编译错误：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-error" data-lang="error"> error C2683: &#39;dynamic_cast&#39; : &#39;Base&#39; is not a polymorphic type.</code></pre></div>
+<p>这是因为 dynamic_cast 不允许父类 -&gt; 派生类的转换，除非父类是多态的。</p>
+
+<p>因此，如果我们给父类 Base 添加一个虚函数使其多态化，那么就能编译通过了。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">vf</span><span style="color:#000;font-weight:bold">(){}};</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> 
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">Base</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">Derived</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">;</span>
+
+    <span style="color:#000">Base</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Base</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">d</span><span style="color:#000;font-weight:bold">;);</span>        <span style="color:#8f5902;font-style:italic">// #1
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Derived</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">b</span><span style="color:#000;font-weight:bold">;);</span>  <span style="color:#8f5902;font-style:italic">// #2
+</span><span style="color:#8f5902;font-style:italic"></span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>但是在运行时，#2 会转换失败并且产生空指针，来看另一个例子：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">vf</span><span style="color:#000;font-weight:bold">(){}</span> <span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> 
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">Base</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pBDerived</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Derived</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">Base</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pBBase</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Base</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pd</span><span style="color:#000;font-weight:bold">;</span>
+
+    <span style="color:#000">pd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Derived</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pBDerived</span><span style="color:#000;font-weight:bold">);</span>     <span style="color:#8f5902;font-style:italic">// #1
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">pd</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Derived</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pBBase</span><span style="color:#000;font-weight:bold">);</span>        <span style="color:#8f5902;font-style:italic">// #2
+</span><span style="color:#8f5902;font-style:italic"></span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>The example has two dynamic casts from pointers of type Base to a point of type Derived. But only the #1 is successful.</p>
+
+<p>Even though pBDerived and pBBase are pointers of type Base*, pBDerived points to an object of type Derived, while pBBase points to an object of type Base. Thus, when their respective type-castings are performed using dynamic_cast, pBDerived is pointing to a full object of class Derived, whereas pBBase is pointing to an object of class Base, which is an incomplete object of class Derived.</p>
+
+<p>In general, the expression</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Type</span> <span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">ptr</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div>
+<p>converts the pointer ptr to a pointer of type Type* if the pointer-to object (*ptr) is of type Type or else derived directly or indirectly from type Type. Otherwise, the expression evaluates to 0, the null pointer.</p>
+
+<h2 id="dynamic-cast-example">Dynamic_cast - example</h2>
+
+<p>下面的额代码中，有个 main() 函数不工作，是哪个呢？</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">A</span>
+<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">(){}</span>
+<span style="color:#000;font-weight:bold">};</span>
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">A</span>
+<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">(){}</span>
+<span style="color:#000;font-weight:bold">};</span>
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">C</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">B</span>
+<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">(){}</span>
+<span style="color:#000;font-weight:bold">};</span>
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">D</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">C</span>
+<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">(){}</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> 
+<span style="color:#000">f1</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">A</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pa</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">C</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">B</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pa</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">pb</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> 
+<span style="color:#000">f2</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">A</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">B</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">C</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">C</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pb</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">pc</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> 
+<span style="color:#000">f3</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">A</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pa</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">D</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">B</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pa</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">pb</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> 
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">f1</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">g</span><span style="color:#000;font-weight:bold">();</span>   <span style="color:#8f5902;font-style:italic">// (1)
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">f2</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">g</span><span style="color:#000;font-weight:bold">();</span>   <span style="color:#8f5902;font-style:italic">// (2)
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">f3</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">g</span><span style="color:#000;font-weight:bold">();</span>   <span style="color:#8f5902;font-style:italic">// (3)
+</span><span style="color:#8f5902;font-style:italic"></span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>答案是 (2)，这是个向下转型（downcast）。</p>
+
+<h2 id="dynamic-cast-another-example">Dynamic_cast - another example</h2>
+
+<p>In this example, the DoSomething(Window* w) is passed down Window pointer. It calls scroll() method which is only available from Scroll object. So, in this case, we need to check if the object is the Scroll type or not before the call to the scroll() method.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;string&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Window</span>
+<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(){};</span>
+    <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">string</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{};</span>
+    <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#ce5c00;font-weight:bold">~</span><span style="color:#000">Window</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{};</span>
+    <span style="color:#204a87;font-weight:bold">void</span> 
+<span style="color:#000">getName</span><span style="color:#000;font-weight:bold">()</span>
+ 
+<span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">name</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">};</span>
+<span style="color:#204a87;font-weight:bold">private</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#000">string</span> <span style="color:#000">name</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">ScrollWindow</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Window</span>
+<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#000">ScrollWindow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{};</span>
+    <span style="color:#ce5c00;font-weight:bold">~</span><span style="color:#000">ScrollWindow</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{};</span>
+    <span style="color:#204a87;font-weight:bold">void</span> 
+<span style="color:#000">scroll</span><span style="color:#000;font-weight:bold">()</span>
+ 
+<span style="color:#000;font-weight:bold">{</span> <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;scroll()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;};</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">void</span> 
+<span style="color:#000">DoSomething</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Window</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">w</span><span style="color:#000;font-weight:bold">)</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">w</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">getName</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#8f5902;font-style:italic">// w-&gt;scroll();  // class &#34;Window&#34; has no member scroll
+</span><span style="color:#8f5902;font-style:italic"></span>
+    <span style="color:#8f5902;font-style:italic">// check if the pointer is pointing to a scroll window
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">ScrollWindow</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">sw</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">ScrollWindow</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">w</span><span style="color:#000;font-weight:bold">);</span>
+
+    <span style="color:#8f5902;font-style:italic">// if not null, it&#39;s a scroll window object
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sw</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">sw</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">scroll</span><span style="color:#000;font-weight:bold">();</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> 
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">Window</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">w</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;plain window&#34;</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000">ScrollWindow</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">sw</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">ScrollWindow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;scroll window&#34;</span><span style="color:#000;font-weight:bold">);</span>
+
+    <span style="color:#000">DoSomething</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">w</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000">DoSomething</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sw</span><span style="color:#000;font-weight:bold">);</span>
+
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<h2 id="upcasting-and-downcasting">Upcasting and Downcasting</h2>
+
+<p>Converting a derived-class reference or pointer to a base-class reference or pointer is called upcasting. It is always allowed for public inheritance without the need for an explicit type cast.</p>
+
+<p>Actually this rule is part of expressing the is-a relationship. A Derived object is a Base object in that it inherits all the data members and member functions of a Base object. Thus, anything that we can do to a Base object, we can do to a Derived class object.</p>
+
+<p>The downcasting, the opposite of upcasting, is a process converting a base-class pointer or reference to a derived-class pointer or reference.</p>
+
+<p>It is not allowed without an explicit type cast. That&rsquo;s because a derived class could add new data members, and the class member functions that used these data members wouldn&rsquo;t apply to the base class.</p>
+
+<p>Here is a self explanatory example</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">private</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">id</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">show_id</span><span style="color:#000;font-weight:bold">(){}</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">coding</span><span style="color:#000;font-weight:bold">(){}</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">int</span> 
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">Employee</span> <span style="color:#000">employee</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">Programmer</span> <span style="color:#000">programmer</span><span style="color:#000;font-weight:bold">;</span>
+
+    <span style="color:#8f5902;font-style:italic">// upcast - implicit upcast allowed
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">Employee</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pEmp</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">programmer</span><span style="color:#000;font-weight:bold">;</span>
+
+    <span style="color:#8f5902;font-style:italic">// downcast - explicit type cast required
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pProg</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">employee</span><span style="color:#000;font-weight:bold">;</span>
+
+
+    <span style="color:#8f5902;font-style:italic">// Upcasting: safe - progrommer is an Employee
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// and has his id to do show_id().
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">pEmp</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">show_id</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000">pProg</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">show_id</span><span style="color:#000;font-weight:bold">();</span>
+
+    <span style="color:#8f5902;font-style:italic">// Downcasting: unsafe - Employee does not have
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// the method, coding().
+</span><span style="color:#8f5902;font-style:italic"></span>       <span style="color:#8f5902;font-style:italic">// compile error: &#39;coding&#39; : is not a member of &#39;Employee&#39;
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// pEmp-&gt;coding();
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">pProg</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">coding</span><span style="color:#000;font-weight:bold">();</span>
+
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<h2 id="the-typeid">The typeid</h2>
+
+<p>typeid 能让我们检测两个对象是否相同。</p>
+
+<p>In the previous example for Upcasting and Downcasting, employee gets the method coding() which is not desirable.
+So, we need to check if a pointer is pointing to the Programmer object before we use the method, coding().</p>
+
+<p>Here is a new code showing how to use typeid:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">private</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">id</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">show_id</span><span style="color:#000;font-weight:bold">(){}</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">coding</span><span style="color:#000;font-weight:bold">(){}</span>
+<span style="color:#000;font-weight:bold">};</span>
+
+<span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;typeinfo&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">int</span> 
+<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
+
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">Employee</span> <span style="color:#000">lee</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">Programmer</span> <span style="color:#000">park</span><span style="color:#000;font-weight:bold">;</span>
+
+    <span style="color:#000">Employee</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pEmpA</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">lee</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">Employee</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pEmpB</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">park</span><span style="color:#000;font-weight:bold">;</span>
+
+    <span style="color:#8f5902;font-style:italic">// check if two object is the same
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">typeid</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Programmer</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#204a87;font-weight:bold">typeid</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">lee</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pProg</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">lee</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">pProg</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">coding</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">typeid</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Programmer</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">==</span> <span style="color:#204a87;font-weight:bold">typeid</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">park</span><span style="color:#000;font-weight:bold">))</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pProg</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">park</span><span style="color:#000;font-weight:bold">;</span>
+        <span style="color:#000">pProg</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">coding</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000;font-weight:bold">}</span>
+
+    <span style="color:#000">pEmpA</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">show_id</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#000">pEmpB</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">show_id</span><span style="color:#000;font-weight:bold">();</span>
+
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>So, only a programmer uses the coding() method.</p>
+
+<p>Note that we included <typeinfo> in the example. The typeid operator returns a reference to a type_info object, where type_info is a class defined in the typeinfo header file.</p>
+
+<h3 id="原文来源">原文来源</h3>
+
+<p><a id="ref01"><a href="http://www.bogotobogo.com/cplusplus/dynamic_cast.php">C++ TUTORIAL - DYNAMIC CAST - 2018</a></a></p>
+        </article>
+
+        <footer class="post-footer">
+            
+            <ul class="post-tags">
+                
+                <li>
+                    <a href="http://localhost:1313/tags/c&#43;&#43;"> <span class="tag">C&#43;&#43;</span> </a>
+                </li>
+                
+            </ul>
+            
+            <p class="post-copyright">
+                本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
+            </p>
+        </footer>
+    </div>
+
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1900757-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+</html>
+
