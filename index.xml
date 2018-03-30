@@ -51,12 +51,12 @@
 
 &lt;p&gt;RTTI 提供了一个标准的方法用来检测运行时对象的类型。&lt;/p&gt;
 
-&lt;p&gt;In other words, RTTI allows programs that use pointers or references to base classes to retrieve the actual derived types of the objects to which these pointers or references refer.&lt;/p&gt;
+&lt;p&gt;换句话说，RTTI（运行时类型识别）允许“用指向基类的指针或引用来操纵对象”的程序能够获取到“这些指针或引用所指对象”的实际派生类型。&lt;/p&gt;
 
-&lt;p&gt;RTTI 通过两种运算符来实现：&lt;/p&gt;
+&lt;p&gt;RTTI 通过两种操作符来实现：&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;typeid        返回指针或引用所绑定的对象的实际类型&lt;/li&gt;
+&lt;li&gt;typeid        返回指针或引用所指向的对象的实际派生类型&lt;/li&gt;
 &lt;li&gt;dynamic_cast  将基类指针或引用安全地转换为派生类的指针或引用
 &lt;/li&gt;
 &lt;/ol&gt;
