@@ -31,15 +31,15 @@
         <article class="post-content">
             
 
-<p>我偶尔会在我的日常工作上免费进行咨询和代码审查。因此，我倾向于阅读很多其他人的代码。虽然这真的更像是一种感觉，但我看到了很多我称之为Java风格的接口用法。</p>
+<p>我偶尔会在我的日常工作上免费进行咨询和代码审查。因此，我倾向于阅读很多其他人的代码。虽然这很可能是错觉，但我真的看到了很多我称之为 Java 风格的接口用法。</p>
 
-<p>这篇博文是Go的具体建议，基于我写Go代码的经验，以及如何很好地使用接口。</p>
+<p>这篇博文是 Go 的具体建议，基于我写Go代码的经验，以及如何很好地使用接口。</p>
 
 <p>For this blog post, the running example will span two packages: animal and circus. A lot of what I write about here is about code at the boundary of packages.</p>
 
 <h2 id="别这么干">别这么干</h2>
 
-<p>我看到很多人的对于接口是这样用的：</p>
+<p>我看到很多人的接口是这样用的：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">animals</span>
 
 <span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">Animal</span> <span style="color:#204a87;font-weight:bold">interface</span> <span style="color:#000;font-weight:bold">{</span>
@@ -57,8 +57,8 @@
 
 <ol>
 <li>定义一个接口</li>
-<li>Define one type that fulfils the interface</li>
-<li>Define the methods that satisfies implementation of the interface.</li>
+<li>定义一个匹配这个接口的类型（如：Dog 结构体）</li>
+<li>定义满足接口实现的方法</li>
 </ol>
 
 <p>I would summarize this as “writing types to fulfil interfaces”. The artefacts of such a code smell is clear:</p>
