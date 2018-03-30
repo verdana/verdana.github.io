@@ -31,15 +31,15 @@
         <article class="post-content">
             
 
-<p>I occasionally give free Go consults and code review on top of my daily work. As such, I tend to read a lot of other peoples’ codes. And while this is really more of a feeling *, I’ve seen an increase in what I call “Java-style” interface usage.</p>
+<p>我偶尔会在我的日常工作上免费进行咨询和代码审查。因此，我倾向于阅读很多其他人的代码。虽然这真的更像是一种感觉，但我看到了很多我称之为Java风格的接口用法。</p>
 
-<p>This blog post is a Go specific recommendation from me, based on my experiences writing Go code, on how to use interfaces well.</p>
+<p>这篇博文是Go的具体建议，基于我写Go代码的经验，以及如何很好地使用接口。</p>
 
 <p>For this blog post, the running example will span two packages: animal and circus. A lot of what I write about here is about code at the boundary of packages.</p>
 
-<h2 id="不要这么做">不要这么做</h2>
+<h2 id="别这么干">别这么干</h2>
 
-<p>A very common thing I see people do is this:</p>
+<p>我看到很多人的对于接口是这样用的：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">animals</span>
 
 <span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">Animal</span> <span style="color:#204a87;font-weight:bold">interface</span> <span style="color:#000;font-weight:bold">{</span>
@@ -53,10 +53,10 @@
 <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#4e9a06">&#34;animals&#34;</span>
 
 <span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">Perform</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">a</span> <span style="color:#000">animal</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Animal</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">string</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">Speaks</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">}</span></code></pre></div>
-<p>This is the so-called “Java-style” interface usage. The steps are as such:</p>
+<p>这就是所谓的 Java 风格的接口用法。通常步骤是这样的：</p>
 
 <ol>
-<li>Define an interface</li>
+<li>定义一个接口</li>
 <li>Define one type that fulfils the interface</li>
 <li>Define the methods that satisfies implementation of the interface.</li>
 </ol>
