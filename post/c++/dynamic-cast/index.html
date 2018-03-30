@@ -86,7 +86,7 @@
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div>
-<p>The dynamic_cast operator is intended to be the most heavily used RTTI component. It doesn&rsquo;t give us what type of object a pointer points to. Instead, it answers the question of whether we can safely assign the address of an object to a pointer of a particular type.</p>
+<p>dynamic_cast 在 RTTI 组件中使用最为频繁。它无法告诉我们指针对象的确切类型，但是却可以让我们判断是否可以将一个对象的地址安全的赋值给一个特殊类型的指针。</p>
 
 <p>Unlike other casts, a dynamic_cast involves a run-time type check. If the object bound to the pointer is not an object of the target type, it fails and the value is 0. If it&rsquo;s a reference type when it fails, then an exception of type bad_cast is thrown. So, if we want dynamic_cast to throw an exception (bad_cast) instead of returning 0, cast to a reference instead of to a pointer. Note also that the dynamic_cast is the only cast that relies on run-time checking.</p>
 
