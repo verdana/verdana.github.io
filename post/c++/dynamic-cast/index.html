@@ -153,14 +153,14 @@
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div>
-<p>The example has two dynamic casts from pointers of type Base to a point of type Derived. But only the #1 is successful.</p>
+<p>该示例具有两个从 Base 类型的指针到 Derived 类型的指针的动态强制类型转换。 但只有 ＃1 会成功。</p>
 
-<p>Even though pBDerived and pBBase are pointers of type Base*, pBDerived points to an object of type Derived, while pBBase points to an object of type Base. Thus, when their respective type-castings are performed using dynamic_cast, pBDerived is pointing to a full object of class Derived, whereas pBBase is pointing to an object of class Base, which is an incomplete object of class Derived.</p>
+<p>尽管 pBDerive d和 pBBase 是 Base * 类型的指针，但 pBDerived 指向 Derived 类型的对象，而 pBBase 指向 Base 类型的对象。</p>
 
-<p>In general, the expression</p>
+<p>因此，当使用 dynamic_cast 执行相应的类型转换时，pBDerived 指向类 Derived 的完整对象，而 pBBase 指向 Base类的对象，该类是 Derived 类的不完整对象。</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">Type</span> <span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">ptr</span><span style="color:#000;font-weight:bold">)</span>
 </code></pre></div>
-<p>converts the pointer ptr to a pointer of type Type* if the pointer-to object (*ptr) is of type Type or else derived directly or indirectly from type Type. Otherwise, the expression evaluates to 0, the null pointer.</p>
+<p>通常，如果指针对象 ptr 的类型为 Type 或者直接或间接从 Type 类型派生，则上述表达式将指针 ptr 转换为 Type* 类型的指针。 否则，表达式的计算结果为 0，成为空指针。</p>
 
 <h2 id="dynamic-cast-example">Dynamic_cast - example</h2>
 
@@ -303,7 +303,7 @@
 
 <p>没有明确类型的转换是不允许的。这是因为派生类可能会添加新的数据成员，并且使用这些数据成员的类成员函数将不适用于基类。</p>
 
-<p>这是一个自我解释的例子：</p>
+<p>以下是例子：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span>
 <span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
@@ -395,9 +395,9 @@
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div>
-<p>So, only a programmer uses the coding() method.</p>
+<p>所以，只有 Programmer 使用了 coding() 方法。</p>
 
-<p>Note that we included <typeinfo> in the example. The typeid operator returns a reference to a type_info object, where type_info is a class defined in the typeinfo header file.</p>
+<p>要注意的是，我们在示例中包含了<typeinfo>。 typeid 运算符返回对 type_info 对象的引用，其中 type_info 是 typeinfo 头文件中定义的类。</p>
 
 <h3 id="原文来源">原文来源</h3>
 
