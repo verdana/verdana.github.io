@@ -99,13 +99,13 @@
 <p>通常的说法是这样的：</p>
 
 <blockquote>
-<p>&ldquo;Be conservative with what you do, be liberal with you accept&rdquo;</p>
+<p>Be conservative with what you do, be liberal with you accept</p>
 </blockquote>
 
 <p>如果翻译到 Go 语言的语境中：</p>
 
 <blockquote>
-<p>&ldquo;Accept interfaces, return structs&rdquo;</p>
+<p>Accept interfaces, return structs</p>
 </blockquote>
 
 <p>Go 中的主要代码单元是函数，设计函数/方法时应当遵循的以下的模式：</p>
@@ -115,20 +115,20 @@
 <p>当然，限制参数 a 的具体类型是很有必要的，最好不要在函数中传入空白接口 interface{}，没有意义。</p>
 
 <blockquote>
-<p>&ldquo;the empty interface says nothing&rdquo; - Rob Pike</p>
+<p>the empty interface says nothing - Rob Pike</p>
 </blockquote>
 
 <h2 id="使用案例-mocking">使用案例：Mocking</h2>
 
-<p>An excellent demonstration of the usefulness of the Postel’s Law maxim is in the case of testing. If you have a function that looks like this:</p>
+<p>伯斯塔尔法则的有用性的一个很好的例证就是在测试的环境中下，比如你有一个类似下面的函数：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">func</span> <span style="color:#000">Takes</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">db</span> <span style="color:#000">Database</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#204a87;font-weight:bold">error</span></code></pre></div>
-<p>If Database is an interface then in testing code, you can just provide a mock implementation of Database without having to pass in a real database object.</p>
+<p>如果 Database 是一个接口，然后在测试代码中，您可以提供一个 Database 的模拟实现，而不必传入实际的数据库对象。</p>
 
-<h2 id="when-is-it-acceptable-to-define-an-interface-upfront">When Is It Acceptable To Define An Interface Upfront</h2>
+<h2 id="什么时候可以接受预先定义接口">什么时候可以接受预先定义接口</h2>
 
-<p>Truth be told, programming is pretty free form - there’s no real hard and fast rules. You can of course define an interface upfront. No correctness police is going to show up and arrest you. In the context of multiple packages, if you know your functions are going take a certain interface within the package then by all means do that.</p>
+<p>老实说，编程的形式是非常自由的 - 没有任何的硬性规定。你当然可以预先定义一个接口。在多个 package 的情况下，如果你知道你的函数正在使用包中的某个接口，那么通过一切手段来做到这一点。</p>
 
-<p>Defining an interface upfront is usually a code smell for overengineering. But there are clearly situations where you need define an interface upfront. I can think of several:</p>
+<p>预定义接口通常有点过度工程的意味。但是在很多状况下你很明显是需要预先接口的，我可以想到的是：</p>
 
 <ul>
 <li>封闭接口</li>
