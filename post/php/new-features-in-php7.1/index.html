@@ -176,7 +176,7 @@
 
 <p>在大多数 PHP 函数中，提供一个负值作为字符串偏移意味着 —— 从字符串的末尾的第 n 个位置开始向后计数。 这种机制被广泛使用，但不幸的是，这些负值并不是到处都支持的。</p>
 
-<p>大多数PHP开发人员很难知道给定的字符串函数是否接受否定值，只能参考文档。字符串函数的这种不一致风格，让 PHP 饱受批评。</p>
+<p>大多数开发人员很难知道给定的字符串函数是否接受负值，只能去查阅文档。字符串函数的这种不一致风格，让 PHP 饱受批评。</p>
 
 <p>一个例子是 strrpos() 接受负偏移量，而 strpos() 却不接受。同样情况的还有 substr() / substr_count() 前者可以使用负值偏移量，而后者却不可以。</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
