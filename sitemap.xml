@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>http://phpvim.net/post/php/new-features-in-php7.1/</loc>
+    <lastmod>2018-03-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://phpvim.net/post/golang/howto-use-go-interfaces/</loc>
     <lastmod>2018-03-29T00:00:00+00:00</lastmod>
   </url>
@@ -67,6 +72,12 @@
   </url>
   
   <url>
+    <loc>http://phpvim.net/tags/php/</loc>
+    <lastmod>2018-03-31T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://phpvim.net/tags/plan/</loc>
     <lastmod>2018-03-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -80,7 +91,7 @@
   
   <url>
     <loc>http://phpvim.net/post/</loc>
-    <lastmod>2018-03-29T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-31T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Verdana's Notebook</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://phpvim.net/css/normalize.css">
+    <link rel="stylesheet" href="http://phpvim.net/css/skeleton.css">
+    <link rel="stylesheet" href="http://phpvim.net/css/style.css">
+    <link rel="icon" type="image/png" href="http://phpvim.net/images/favicon.png">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <header class="u-cf topinfo">
+    <code><a href="http://phpvim.net/">@verdana</a></code>
+    
+    <code><span class="post-lastmod">2018, Mar 31</span></code>
+    
+    <code><span>Blogs </span><span class="post-count">7</span></code>
+    <code><span>Views </span><span class="post-views">999</span></code>
+</header>
+
+
+        <article class="post-content">
+            
+
+<p>PHP 开发组在 2016.10.01 发布了 PHP 7.1.0，这是 7.x 系列的首个版本。7.1 带来了一些新的特性 —— 比如 void return type。</p>
+
+<p>下面选择性了介绍一些 PHP 7.1 中的特性 :)</p>
+
+<h2 id="void-functions">void functions</h2>
+
+<p>函数返回值声明为 void 之后，函数体必须忽略 return 或者使用一个空的 return。</p>
+
+<p>之前版本中常使用的 null 返回值对于 void 函数来说是无效的。</p>
+
+<p>示例如下：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// Do something
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// valid
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#8f5902;font-style:italic">// OR
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// Do something
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// valid
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>return null 是不允许的。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// Do something
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// Fatal error: A void function must not return a value
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>会抛出如下的错误信息：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Fatal error:  A void function must not return a value</code></pre></div>
+<p>需要注意的是 void 只能用于声明函数返回类型，不能当作参数类型：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">foobar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">void</span> <span style="color:#000">$foo</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// Fatal error: void cannot be used as a parameter type
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<h2 id="nullable-types">Nullable types</h2>
+
+<p>参数和返回值的类型声明可以通过在类型名称前添加一个问号来标记为空。 也就是说，除了指定的类型外，null 也可以作为参数传递，或者作为值返回。 可空类型可以用在任何需要类型声明的地方，但要遵守一些继承规则。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span>  <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span>    <span style="color:#8f5902;font-style:italic">//ok
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span>  <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">42</span><span style="color:#000;font-weight:bold">;</span>      <span style="color:#8f5902;font-style:italic">// ok
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#204a87;font-weight:bold">stdclass</span><span style="color:#000;font-weight:bold">();</span>
+    <span style="color:#8f5902;font-style:italic">// Fatal error: Uncaught TypeError: Return value of
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// answer() must be of the type integer or null
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">say</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">string</span> <span style="color:#000">$msg</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">$msg</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#204a87;font-weight:bold">echo</span> <span style="color:#000">$msg</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+
+<span style="color:#000">say</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;hello&#39;</span><span style="color:#000;font-weight:bold">);</span>       <span style="color:#8f5902;font-style:italic">// ok -- prints hello
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">say</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">);</span>          <span style="color:#8f5902;font-style:italic">// ok -- does not print
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">say</span><span style="color:#000;font-weight:bold">();</span>              <span style="color:#8f5902;font-style:italic">// error -- missing parameter
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">say</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">new</span> <span style="color:#204a87;font-weight:bold">stdclass</span><span style="color:#000;font-weight:bold">);</span>  <span style="color:#8f5902;font-style:italic">// error -- bad type
+</span><span style="color:#8f5902;font-style:italic"></span></code></pre></div>
+<p>注意：具有可空类型的参数不能使用默认值。如果省略参数值，那么该参数值不会默认为 null，并会导致错误：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">callable</span> <span style="color:#000">$p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{}</span>
+<span style="color:#000">f</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#8f5902;font-style:italic">// invalid; function f does not have a default
+</span><span style="color:#8f5902;font-style:italic"></span></code></pre></div>
+<p>PHP的现有语义允许为参数提供一个空的默认值，以使其可为空或可选：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">foo_default</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Bar</span> <span style="color:#000">$bar</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{}</span>
+
+<span style="color:#000">foo_default</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Bar</span><span style="color:#000;font-weight:bold">);</span>   <span style="color:#8f5902;font-style:italic">// valid
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">foo_default</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">);</span>      <span style="color:#8f5902;font-style:italic">// valid
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">foo_default</span><span style="color:#000;font-weight:bold">();</span>          <span style="color:#8f5902;font-style:italic">// valid
+</span><span style="color:#8f5902;font-style:italic"></span></code></pre></div>
+<h2 id="symmetric-array-destructuring">Symmetric array destructuring</h2>
+
+<p>作为 PHP 5.4 中引入的速记数组语法[]，现在可以用来对指定（包括在foreach中）的数组进行解构，这可以用来替代现有的 list() 语法，不过 list 还是可以继续使用。</p>
+
+<p>使用 PHP 5.4 中引入的速记数组语法，我们可以像下面那样定义一个数组。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#8f5902;font-style:italic">// Creates an array containing elements with the values 1, 2 and 3,
+</span><span style="color:#8f5902;font-style:italic">// and keys numbered from zero
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">$array</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">];</span>
+
+<span style="color:#8f5902;font-style:italic">// Creates an array containing elements with the values 1, 2 and 3,
+</span><span style="color:#8f5902;font-style:italic">// and the keys &#34;a&#34;, &#34;b&#34;, &#34;c&#34;
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">$array</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;a&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;b&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;c&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">];</span>
+</code></pre></div>
+<p>与用于构造数组的 array() 语法类似，自 PHP3 以来，PHP 具有用于从数组元素分配变量的语法形式，称为解构 (destructuring)。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#8f5902;font-style:italic">// Assigns to $a, $b and $c the values of their respective array
+</span><span style="color:#8f5902;font-style:italic">// elements in $array with keys numbered from zero
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">list</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$c</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">$array</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div>
+<p>有了 PHP 7.1 的新功能，我们可以像下面那样解构一个数组。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#8f5902;font-style:italic">// Assigns to $a, $b and $c the values of their respective
+</span><span style="color:#8f5902;font-style:italic">// array elements in $array with keys numbered from zero
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$c</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">$array</span><span style="color:#000;font-weight:bold">;</span>
+
+<span style="color:#8f5902;font-style:italic">// Assigns to $a, $b and $c the values of the array elements
+</span><span style="color:#8f5902;font-style:italic">// in $array with the keys &#34;a&#34;, &#34;b&#34; and &#34;c&#34;, respectively
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;a&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;b&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;c&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$c</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">$array</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div>
+<p>这个语法更加简洁，和替代 array() 的 [] 一样，这个新的语法不像是函数调用。</p>
+
+<p>重要的是，这个解构数组的语法意味着，数组构造和解构的语法形式上更加的对称，这应该使得语法的功能更具可读性：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#8f5902;font-style:italic">// The two lines in each of the following pairs are equivalent to each other
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">list</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$c</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">array</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">[</span><span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$c</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">];</span>
+
+<span style="color:#204a87;font-weight:bold">list</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;a&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;b&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;c&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$c</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">array</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;a&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;b&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;c&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;a&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;b&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;c&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#000">$c</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#34;a&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;b&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;c&#34;</span> <span style="color:#ce5c00;font-weight:bold">=&gt;</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">];</span>
+
+<span style="color:#204a87;font-weight:bold">list</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">array</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$a</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000;font-weight:bold">[</span><span style="color:#000">$a</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$b</span><span style="color:#000;font-weight:bold">]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">$b</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$a</span><span style="color:#000;font-weight:bold">];</span>
+</code></pre></div>
+<h2 id="class-constant-visibility">Class Constant Visibility</h2>
+
+<p>之前版本中，PHP 中的类允许在属性和方法上使用修饰符，但不允许用在类常量上。</p>
+
+<p>而现在，PHP7.1 允许类常量定义为 public，private 或 protected，并且未声明的常量没有明确的可见性关键字的默认为 public。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">ConstDemo</span>
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">PUBLIC_CONST_A</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">PUBLIC_CONST_B</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">protected</span> <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">PROTECTED_CONST</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">PRIVATE_CONST</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<h2 id="support-for-negative-string-offsets">Support for negative string offsets</h2>
+
+<p>对接受偏移的字符串操作函数以及用 [] 或 {} 进行字符串索引时，现在支持使用负字符串偏移量。在这种情况下，负偏移量被解释为距字符串末尾的偏移量。</p>
+
+<p>在大多数 PHP 函数中，提供一个负值作为字符串偏移意味着 —— 从字符串的末尾的第 n 个位置开始向后计数。 这种机制被广泛使用，但不幸的是，这些负值并不是到处都支持的。</p>
+
+<p>大多数PHP开发人员很难知道给定的字符串函数是否接受否定值，只能参考文档。字符串函数的这种不一致风格，让 PHP 饱受批评。</p>
+
+<p>一个例子是 strrpos() 接受负偏移量，而 strpos() 却不接受。同样情况的还有 substr() / substr_count() 前者可以使用负值偏移量，而后者却不可以。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#000">var_dump</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;abcdef&#34;</span><span style="color:#000;font-weight:bold">[</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">]);</span>
+<span style="color:#000">var_dump</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">strpos</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;aabbcc&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#34;b&#34;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">));</span>
+
+<span style="color:#8f5902;font-style:italic">// output:
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">string</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#4e9a06">&#34;e&#34;</span>
+<span style="color:#000">int</span><span style="color:#000;font-weight:bold">(</span><span style="color:#0000cf;font-weight:bold">3</span><span style="color:#000;font-weight:bold">)</span>
+</code></pre></div>
+        </article>
+
+        <footer class="post-footer">
+            
+            <ul class="post-tags">
+                
+                <li>
+                    <a href="http://phpvim.net/tags/php"> <span class="tag">PHP</span> </a>
+                </li>
+                
+            </ul>
+            
+            <p class="post-copyright">
+                本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
+            </p>
+        </footer>
+
+        
+    </div>
+
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1900757-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+</html>
+
