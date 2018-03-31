@@ -35,8 +35,6 @@
 
 <p>这篇博文是 Go 的具体建议，基于我写Go代码的经验，以及如何很好地使用接口。</p>
 
-<p>For this blog post, the running example will span two packages: animal and circus. A lot of what I write about here is about code at the boundary of packages.</p>
-
 <h2 id="不要这样做">不要这样做</h2>
 
 <p>我看到很多人的接口是这样用的：</p>
@@ -142,16 +140,14 @@
 
 <p>Sealed interfaces can only be discussed in the context of having multiple packages. A sealed interface is an interface with unexported methods. This means users outside the package is unable to create types that fulfil the interface. This is useful for emulating a sum type as an exhaustive search for the types that fulfil the interface can be done.</p>
 
-<p>封闭接口只能在具有 package 的环境中讨论。封闭接口指的是没有导出任何方法的接口。这意味着 package 外部的用户无法创建满足界面的类型。这对于模拟总和类型非常有用，因为它可以完成可以完成接口的类型的详尽搜索。</p>
-
 <p>所以你要定义这样的东西：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">Fooer</span> <span style="color:#204a87;font-weight:bold">interface</span> <span style="color:#000;font-weight:bold">{</span>
 	<span style="color:#000">Foo</span><span style="color:#000;font-weight:bold">()</span>
 	<span style="color:#000">sealed</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">}</span></code></pre></div>
-<p>Only the package that defined Fooer can use and create any valid value of Fooer. This allows for exhaustive type switches to be done.</p>
+<p>只有定义了 Fooer 的包才能使用并创建任何有效的 Fooer 值，这允许实现彻底的类型切换。</p>
 
-<p>A sealed interface also allows for analysis tools to easily pick up any non-exhaustive pattern match. In fact BurntSushi’s <a href="https://github.com/BurntSushi/go-sumtype">sumtypes</a> package does just that for you.</p>
+<p>一个密封的接口也允许分析工具轻松地获取任何非穷举的模式匹配，请看 BurntSushi’s <a href="https://github.com/BurntSushi/go-sumtype">sumtypes</a>。</p>
 
 <h2 id="抽象数据类型">抽象数据类型</h2>
 
@@ -175,19 +171,19 @@
 
 <h2 id="递归接口">递归接口</h2>
 
-<p>This is probably another code smell, but there are times which are unavoidable, you perform something within a monad and end up with an interface that looks like this:</p>
+<p>这可能是另一种形式的代码，但是有时候不太容易避免，你在 monad 中执行某些操作，最终得到的接口如下所示：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">Fooer</span> <span style="color:#204a87;font-weight:bold">interface</span> <span style="color:#000;font-weight:bold">{</span>
 	<span style="color:#000">Foo</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000">Fooer</span>
 <span style="color:#000;font-weight:bold">}</span></code></pre></div>
-<p>The recursive interface pattern would require the interface be defined upfront, clearly. The guideline of defining an interface at the point of use is inapplicable here.</p>
+<p>递归接口模式需要清晰地预先定义接口，在此使用点定义接口的准则不太适用。</p>
 
-<p>This pattern is useful for creating contexts to operate in. Context-heavy code are usually self-contained within a package, with only the contexts exported (alá the tensor package), so I don’t actually see a lot of this. I’ve quite a bit more to say about contextual patterns, but I’ll leave that to another blog post.</p>
+<p>这种模式对于创建上下文来操作是非常有用的。上下文密集的代码通常是自包含在一个包中，只有上下文导出，实际上我见的不多。</p>
 
 <h2 id="结论">结论</h2>
 
 <p>尽管我有一个标题为“不要这样做”的部分，但这篇文章的目的并不意味着具有前瞻性。相反，我想鼓励人们在边界条件下思考 - 就是所有边缘案例发生的场景。</p>
 
-<p>我个人发现使用点声明模式非常有用，因此，我不会总是遇到我前面论顺的这些问题。</p>
+<p>我个人发现使用点声明模式非常有用，因此，我很少遇到我前面讨论过的这些问题。</p>
 
 <p>但是，我也遇到过最终需要编写Java风格接口的情况 - 通常是在我用Python或Java编写代码的时候。 在编写大量面向对象的代码后再编写Go代码时，过度编程和“对所有事物进行分类”的愿望非常强烈。</p>
 
