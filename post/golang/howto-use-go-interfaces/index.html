@@ -37,7 +37,7 @@
 
 <p>For this blog post, the running example will span two packages: animal and circus. A lot of what I write about here is about code at the boundary of packages.</p>
 
-<h2 id="别这么干">别这么干</h2>
+<h2 id="不要这样做">不要这样做</h2>
 
 <p>我看到很多人的接口是这样用的：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">package</span> <span style="color:#000">animals</span>
@@ -155,9 +155,9 @@
 
 <h2 id="抽象数据类型">抽象数据类型</h2>
 
-<p>The other use of defining an interface upfront is to create a abstract data type. It may or may not be sealed.</p>
+<p>定义接口的另一个用途是创建一个抽象数据类型，无所谓是否被密封（sealed）。</p>
 
-<p>The sort package that comes in the standard library is a good example of this. It defines a sortable collection as</p>
+<p>标准库中的排序包就是一个很好的例子，它定义了一个可排序的集合：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#204a87;font-weight:bold">type</span> <span style="color:#000">Interface</span> <span style="color:#204a87;font-weight:bold">interface</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#8f5902;font-style:italic">// Len is the number of elements in the collection.
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">Len</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#204a87;font-weight:bold">int</span>
@@ -167,11 +167,11 @@
     <span style="color:#8f5902;font-style:italic">// Swap swaps the elements with indexes i and j.
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">Swap</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">i</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">j</span> <span style="color:#204a87;font-weight:bold">int</span><span style="color:#000;font-weight:bold">)</span>
 <span style="color:#000;font-weight:bold">}</span></code></pre></div>
-<p>Now this has made a lot of people upset - because if you want to use the sort package you’d have to implement the methods for the interface, and people for the most part are upset about having to type three extra lines.</p>
+<p>现在这已经让很多人感到不爽了 - 因为如果你想使用排序包，你必须自己实现接口的方法。</p>
 
-<p>However in my opinion this is a very elegant form of generics in Go. It should be encouraged more.</p>
+<p>但在我看来，这是Go中非常优雅的范式，应该鼓励这么做。</p>
 
-<p>The alternative design that is elegant would require higher-kinded types. We shan’t go there in this blog post.</p>
+<p>另一种方式是使用更高阶的类型来实现优雅的设计，这里就不做讨论了。</p>
 
 <h2 id="递归接口">递归接口</h2>
 
@@ -185,15 +185,15 @@
 
 <h2 id="结论">结论</h2>
 
-<p>Even though I have a section titled “Don’t Do This”, the purpose of this post is not meant to be proscriptive. Rather, I want to encourage people to think at the boundary conditions - that’s where all the edge cases happen.</p>
+<p>尽管我有一个标题为“不要这样做”的部分，但这篇文章的目的并不意味着具有前瞻性。相反，我想鼓励人们在边界条件下思考 - 就是所有边缘案例发生的场景。</p>
 
-<p>I personally found the declare-at-point-of-use pattern extremely useful. As a result I don’t particularly run into issues that I’ve observed a number of people have run into.</p>
+<p>我个人发现使用点声明模式非常有用，因此，我不会总是遇到我前面论顺的这些问题。</p>
 
-<p>I however also run into cases where I end up accidentally writing Java style interfaces - typically after I come back from a stint of writing code in Python or Java. The desire to overengineer and “class all the things” something is quite strong especially when writing Go code after writing a lot of object oriented code.</p>
+<p>但是，我也遇到过最终需要编写Java风格接口的情况 - 通常是在我用Python或Java编写代码的时候。 在编写大量面向对象的代码后再编写Go代码时，过度编程和“对所有事物进行分类”的愿望非常强烈。</p>
 
-<p>Hence this post also serves as a self-reminder on what the path to pain-free code looks like. Tell me what you think!</p>
+<p>因此这篇文章也可以作为一个自我提醒，告诉我们如何写出无痛的代码。</p>
 
-<p>Thanks to <a href="https://twitter.com/nstratos">Stratos Neiros</a> for reviewing an earlier version of this article. And to Riteek Srivastava for picking out some bugs in the example code.</p>
+<p>感谢 <a href="https://twitter.com/nstratos">Stratos Neiros</a> 审核这篇文章，同时也感谢 Riteek Srivastava 指出示例代码中的错误。</p>
 
         </article>
 
