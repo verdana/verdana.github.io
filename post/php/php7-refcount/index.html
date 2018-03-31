@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Verdana's Notebook</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://phpvim.net/css/normalize.css">
+    <link rel="stylesheet" href="http://phpvim.net/css/skeleton.css">
+    <link rel="stylesheet" href="http://phpvim.net/css/style.css">
+    <link rel="icon" type="image/png" href="http://phpvim.net/images/favicon.png">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <header class="u-cf topinfo">
+    <code><a href="http://phpvim.net/">@verdana</a></code>
+    
+    <code><span class="post-lastmod">2018, Mar 31</span></code>
+    
+    <code><span>Blogs </span><span class="post-count">8</span></code>
+    <code><span>Views </span><span class="post-views">999</span></code>
+</header>
+
+
+        <article class="post-content">
+            <p>最近在复习 PHP 的垃圾收集机制，发现一些 refcount 的小细节，这里稍作记录。</p>
+
+<blockquote>
+<p>PHP 的 GC 是用来清理运行时资源的。它使用了基于引用的机制来处理复杂的变量类型，同时也使用了 mark-and-sweep 的技术来检测循环引用所引起的内存泄漏。</p>
+</blockquote>
+
+<p>当然这篇小文并不是为了介绍 PHP 的 GC 机制，而是简单的说一下 refcount，原因是我在测试一些介绍 GC 的文章中的例子时，发现一些例子运行结果不正确。</p>
+
+<p></p>
+
+<p>比如下面的代码，这是 PHP 手册中的一段代码：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#000">$a</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#34;new string&#34;</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000">$c</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">$b</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">$a</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000">xdebug_debug_zval</span><span style="color:#000;font-weight:bold">(</span> <span style="color:#4e9a06">&#39;a&#39;</span> <span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000">$b</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">42</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000">xdebug_debug_zval</span><span style="color:#000;font-weight:bold">(</span> <span style="color:#4e9a06">&#39;a&#39;</span> <span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000">unset</span><span style="color:#000;font-weight:bold">(</span> <span style="color:#000">$c</span> <span style="color:#000;font-weight:bold">);</span>
+<span style="color:#000">xdebug_debug_zval</span><span style="color:#000;font-weight:bold">(</span> <span style="color:#4e9a06">&#39;a&#39;</span> <span style="color:#000;font-weight:bold">);</span>
+</code></pre></div>
+<p>手册给出的运行结果是这样的：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">// result from php5.6
+a: (refcount=3, is_ref=0)=&#39;new string&#39;
+a: (refcount=2, is_ref=0)=&#39;new string&#39;
+a: (refcount=1, is_ref=0)=&#39;new string&#39;</code></pre></div>
+<p>如果你使用 PHP5 运行上面的代码，结果确实是如此，但是当我使用 PHP 7.x 运行时，结果发生了变化：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">// result from php7.0-7.2
+a: (refcount=0, is_ref=0)=&#39;new string&#39;
+a: (refcount=0, is_ref=0)=&#39;new string&#39;
+a: (refcount=0, is_ref=0)=&#39;new string&#39;</code></pre></div>
+<p>哈，实际上这是 PHP7 的 GC 机制更加完善的表现。</p>
+
+<p>在 PHP7 中变量会根据类型的不同，而使用或者不使用引用计数。</p>
+
+<ol>
+<li>简单的数据类型，null, bool, int, float 不会使用。</li>
+<li>一些复杂的类型，object, resource 和 reference 总是会使用。</li>
+<li>还有一些类型，比如 string 和 array 则不确定。</li>
+</ol>
+
+<h3 id="内部字符串">内部字符串</h3>
+
+<p>以字符串来说明，如果你使用的是非线程安全 (NTS) 的 PHP7 版本，那么所有的字符串实际上都是内部字符串 &ldquo;interned string&rdquo;，这些字符串是唯一且不重复的，并且在整个 request 生命周期中，这些字符串都是始终存在的，所以无需使用引用计数。</p>
+
+<p>如果你用到了 opcache，那么内部字符串实际上全部存储在共享内存中，因为没有同步机制，而 PHP 的引用计数技术又是非原子性的，所以这种情况下是无法使用引用计数的。</p>
+
+<p>内部字串有个临时的 refcount = 1，但是即使用 xdebug 也看不到。</p>
+
+<h3 id="不可变数组">不可变数组</h3>
+
+<p>Immutable array 是 PHP7 opcache 中引入的一项优化机制。用在那些在编译期间就能完全确定元素值的数组上。所以 immutable array 只能包含，字符串，浮点数，整形和数组这样的元素。这项优化机制保证了在循环中，数组只会被创建一次，这样可以大幅度的减少内存占用。</p>
+
+<p>其特点包括：</p>
+
+<ul>
+<li>不使用引用计数</li>
+<li>不会被垃圾收集</li>
+<li>不可被复制</li>
+</ul>
+
+<p>举个栗子：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
+<span style="color:#204a87;font-weight:bold">for</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">$i</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#0000cf;font-weight:bold">0</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">$i</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#0000cf;font-weight:bold">10000</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#000">$i</span> <span style="color:#ce5c00;font-weight:bold">++</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#000">$data</span><span style="color:#000;font-weight:bold">[]</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#0000cf;font-weight:bold">2.3</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;php&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;array&#39;</span><span style="color:#000;font-weight:bold">]];</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div>
+<p>PHP5 中，相同的数组会被复制 10000 次，可见这样是非常浪费内存的。在实际的场景中，我们也是可能会遇到在循环中处理大数组的情况的。</p>
+
+<p>PHP7 呢，opcache 会标记数组为 immutable：数组仅会被创建一次，内存指针被其它可能用到的地方共享，这样就起到了节约内存的作用。</p>
+
+<p>尽管上面提到了 immutable array 不使用引用计数，但是实际上内部结构中 refcount 还是有个固定的值 2，这样保证了 immutable array 在需要改变时，产生一个硬拷贝并改变这个新的数组，以保证原数组的完整性。</p>
+
+<p>这项优化技术是 opcache 的一部分，所以必须激活 opcache 扩展才可以使用。</p>
+        </article>
+
+        <footer class="post-footer">
+            
+            <ul class="post-tags">
+                
+                <li>
+                    <a href="http://phpvim.net/tags/php"> <span class="tag">Php</span> </a>
+                </li>
+                
+                <li>
+                    <a href="http://phpvim.net/tags/refcount"> <span class="tag">Refcount</span> </a>
+                </li>
+                
+                <li>
+                    <a href="http://phpvim.net/tags/gc"> <span class="tag">Gc</span> </a>
+                </li>
+                
+            </ul>
+            
+            <p class="post-copyright">
+                本作品采用<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">知识共享署名 4.0 国际许可协议</a>进行许可。
+            </p>
+        </footer>
+
+        
+    </div>
+
+
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-1900757-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+</body>
+</html>
+

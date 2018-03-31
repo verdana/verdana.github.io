@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on Verdana&#39;s Notebook</title>
+    <link>http://phpvim.net/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Verdana&#39;s Notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>本作品采用&lt;a rel=&#34;license&#34; href=&#34;http://creativecommons.org/licenses/by/4.0/&#34;&gt;知识共享署名 4.0 国际许可协议&lt;/a&gt;进行许可。</copyright>
+    <lastBuildDate>Tue, 20 Mar 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="http://phpvim.net/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>C&#43;&#43; dynamic cast</title>
+      <link>http://phpvim.net/post/c&#43;&#43;/dynamic-cast/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/post/c&#43;&#43;/dynamic-cast/</guid>
+      <description>&lt;h2 id=&#34;rtti&#34;&gt;RTTI&lt;/h2&gt;
+
+&lt;p&gt;RTTI 全称运行时类型信息（Run-time Type Identification）。&lt;/p&gt;
+
+&lt;p&gt;RTTI 提供了一个标准的方法用来检测运行时对象的类型。&lt;/p&gt;
+
+&lt;p&gt;换句话说，RTTI（运行时类型识别）允许“用指向基类的指针或引用来操纵对象”的程序能够获取到“这些指针或引用所指对象”的实际派生类型。&lt;/p&gt;
+
+&lt;p&gt;RTTI 通过两种操作符来实现：&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;typeid        返回指针或引用所指向的对象的实际派生类型&lt;/li&gt;
+&lt;li&gt;dynamic_cast  将基类指针或引用安全地转换为派生类的指针或引用
+&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;dynamic-cast&#34;&gt;dynamic_cast&lt;/h2&gt;
+
+&lt;p&gt;尝试将一个对象转换成类型更具体的对象。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

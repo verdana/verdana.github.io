@@ -26,6 +26,23 @@
     </item>
     
     <item>
+      <title>关于 PHP7 中的 refcount</title>
+      <link>http://phpvim.net/post/php/php7-refcount/</link>
+      <pubDate>Sat, 31 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/post/php/php7-refcount/</guid>
+      <description>&lt;p&gt;最近在复习 PHP 的垃圾收集机制，发现一些 refcount 的小细节，这里稍作记录。&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;PHP 的 GC 是用来清理运行时资源的。它使用了基于引用的机制来处理复杂的变量类型，同时也使用了 mark-and-sweep 的技术来检测循环引用所引起的内存泄漏。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当然这篇小文并不是为了介绍 PHP 的 GC 机制，而是简单的说一下 refcount，原因是我在测试一些介绍 GC 的文章中的例子时，发现一些例子运行结果不正确。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>如何使用 Golang 的 Interface</title>
       <link>http://phpvim.net/post/golang/howto-use-go-interfaces/</link>
       <pubDate>Thu, 29 Mar 2018 00:00:00 +0000</pubDate>
