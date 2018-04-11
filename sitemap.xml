@@ -13,6 +13,16 @@
   </url>
   
   <url>
+    <loc>http://phpvim.net/post/php/modern-php-wof/</loc>
+    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://phpvim.net/post/php/php-static/</loc>
+    <lastmod>2018-04-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://phpvim.net/post/http/http-2.0-initial/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
   </url>
@@ -59,13 +69,13 @@
   </url>
   
   <url>
-    <loc>http://phpvim.net/tags/c&#43;&#43;/</loc>
+    <loc>http://phpvim.net/categories/c&#43;&#43;/</loc>
     <lastmod>2018-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://phpvim.net/categories/c&#43;&#43;/</loc>
+    <loc>http://phpvim.net/tags/c&#43;&#43;/</loc>
     <lastmod>2018-03-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -83,25 +93,25 @@
   </url>
   
   <url>
-    <loc>http://phpvim.net/tags/golang/</loc>
-    <lastmod>2018-03-29T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://phpvim.net/categories/golang/</loc>
     <lastmod>2018-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://phpvim.net/tags/http/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <loc>http://phpvim.net/tags/golang/</loc>
+    <lastmod>2018-03-29T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://phpvim.net/categories/http/</loc>
+    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://phpvim.net/tags/http/</loc>
     <lastmod>2018-04-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -113,14 +123,14 @@
   </url>
   
   <url>
-    <loc>http://phpvim.net/tags/php/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <loc>http://phpvim.net/categories/php/</loc>
+    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://phpvim.net/categories/php/</loc>
-    <lastmod>2018-03-31T00:00:00+00:00</lastmod>
+    <loc>http://phpvim.net/tags/php/</loc>
+    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -138,7 +148,7 @@
   
   <url>
     <loc>http://phpvim.net/post/</loc>
-    <lastmod>2018-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2018-04-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

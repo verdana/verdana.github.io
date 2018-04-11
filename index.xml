@@ -31,6 +31,30 @@
     </item>
     
     <item>
+      <title>Modern PHP Without a Framework</title>
+      <link>http://phpvim.net/post/php/modern-php-wof/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/post/php/modern-php-wof/</guid>
+      <description>&lt;h2 id=&#34;无框架编程&#34;&gt;无框架编程&lt;/h2&gt;
+
+&lt;p&gt;读了来自 &lt;a href=&#34;https://twitter.com/_KevinSmith&#34;&gt;Kevin Smith&lt;/a&gt; 的文章 &lt;a href=&#34;https://kevinsmith.io/modern-php-without-a-framework&#34;&gt;Modern PHP Without a Framework&lt;/a&gt;，感觉很棒，这也是一直以来我个人追求的目标 —— 无框架 PHP 编程。&lt;/p&gt;
+
+&lt;p&gt;记得以前，想要脱离框架编写 Web 应用是比较麻烦的，很多东西需要自己来写，比如 &lt;code&gt;HTTP&lt;/code&gt; 消息处理，路由，会话管理，权限校验，数据库操作等等。有了框架以后，我们就可以不关心这些，而把精力集中在业务逻辑上。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PHP 的 static 关键字</title>
+      <link>http://phpvim.net/post/php/php-static/</link>
+      <pubDate>Thu, 05 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/post/php/php-static/</guid>
+      <description>static 关键字总结 -</description>
+    </item>
+    
+    <item>
       <title>HTTP/2 初探</title>
       <link>http://phpvim.net/post/http/http-2.0-initial/</link>
       <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
