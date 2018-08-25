@@ -23,7 +23,7 @@
     
     <code><span class="post-lastmod">2018, Mar 20</span></code>
     
-    <code><span>Blogs </span><span class="post-count">10</span></code>
+    <code><span>Blogs </span><span class="post-count">11</span></code>
     <code><span>Views </span><span class="post-views">999</span></code>
 </header>
 
@@ -53,21 +53,19 @@
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;iostream&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">A</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">A</span>
 <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
-    <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">(){</span><span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;A::f()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;}</span>
+    <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">(){</span><span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06">&#34;A::f()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;}</span>
 <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">A</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">A</span>
 <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
-    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">(){</span><span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;B::f()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;}</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">(){</span><span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06">&#34;B::f()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;}</span>
 <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">int</span> 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">A</span> <span style="color:#000">a</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000">B</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
@@ -99,14 +97,11 @@
 </blockquote>
 
 <p>请看下面的示例代码：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{};</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{};</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{};</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{};</span>
 
-<span style="color:#204a87;font-weight:bold">int</span> 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
- 
-<span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
   <span style="color:#000">Base</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
   <span style="color:#000">Derived</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">;</span>
 
@@ -123,13 +118,11 @@
 <p>这是因为 dynamic_cast 不允许父类 -&gt; 派生类的转换，除非父类是多态的。</p>
 
 <p>因此，如果我们给父类 Base 添加一个虚函数使其多态化，那么就能编译通过了。</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">vf</span><span style="color:#000;font-weight:bold">(){}};</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">vf</span><span style="color:#000;font-weight:bold">(){}};</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000;font-weight:bold">};</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">int</span> 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">Base</span> <span style="color:#000">b</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000">Derived</span> <span style="color:#000">d</span><span style="color:#000;font-weight:bold">;</span>
@@ -141,13 +134,11 @@
 <span style="color:#000;font-weight:bold">}</span>
 </code></pre></div>
 <p>但是在运行时，#2 会转换失败并且产生空指针，来看另一个例子：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">vf</span><span style="color:#000;font-weight:bold">(){}</span> <span style="color:#000;font-weight:bold">};</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">vf</span><span style="color:#000;font-weight:bold">(){}</span> <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000;font-weight:bold">};</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Derived</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Base</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">int</span> 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">Base</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pBDerived</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Derived</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000">Base</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pBBase</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Base</span><span style="color:#000;font-weight:bold">;</span>
@@ -175,57 +166,49 @@
 </span><span style="color:#8f5902;font-style:italic"></span>
 <span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">A</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">A</span>
 <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">(){}</span>
 <span style="color:#000;font-weight:bold">};</span>
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">A</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">A</span>
 <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">(){}</span>
 <span style="color:#000;font-weight:bold">};</span>
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">C</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">B</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">C</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">B</span>
 <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">(){}</span>
 <span style="color:#000;font-weight:bold">};</span>
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">D</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">C</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">D</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">C</span>
 <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">g</span><span style="color:#000;font-weight:bold">(){}</span>
 <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> 
-<span style="color:#000">f1</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">f1</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">A</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pa</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">C</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">B</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pa</span><span style="color:#000;font-weight:bold">);</span>
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">pb</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> 
-<span style="color:#000">f2</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">f2</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">A</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">B</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000">C</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pc</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">C</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pb</span><span style="color:#000;font-weight:bold">);</span>
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">pc</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> 
-<span style="color:#000">f3</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#000">A</span><span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">f3</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">A</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pa</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">D</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000">B</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pb</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">dynamic_cast</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">B</span><span style="color:#ce5c00;font-weight:bold">*&gt;</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">pa</span><span style="color:#000;font-weight:bold">);</span>
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">pb</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#204a87;font-weight:bold">int</span> 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">f1</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">g</span><span style="color:#000;font-weight:bold">();</span>   <span style="color:#8f5902;font-style:italic">// (1)
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">f2</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">g</span><span style="color:#000;font-weight:bold">();</span>   <span style="color:#8f5902;font-style:italic">// (2)
@@ -243,36 +226,28 @@
 </span><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;string&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Window</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Window</span>
 <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(){};</span>
     <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">const</span> <span style="color:#000">string</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#000">name</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{};</span>
     <span style="color:#204a87;font-weight:bold">virtual</span> <span style="color:#ce5c00;font-weight:bold">~</span><span style="color:#000">Window</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{};</span>
-    <span style="color:#204a87;font-weight:bold">void</span> 
-<span style="color:#000">getName</span><span style="color:#000;font-weight:bold">()</span>
- 
-<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">getName</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">name</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">};</span>
 <span style="color:#204a87;font-weight:bold">private</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#000">string</span> <span style="color:#000">name</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">ScrollWindow</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Window</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">ScrollWindow</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Window</span>
 <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#000">ScrollWindow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">s</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{};</span>
     <span style="color:#ce5c00;font-weight:bold">~</span><span style="color:#000">ScrollWindow</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{};</span>
-    <span style="color:#204a87;font-weight:bold">void</span> 
-<span style="color:#000">scroll</span><span style="color:#000;font-weight:bold">()</span>
- 
-<span style="color:#000;font-weight:bold">{</span> <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;scroll()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;};</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">scroll</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#000">cout</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#4e9a06">&#34;scroll()&#34;</span> <span style="color:#ce5c00;font-weight:bold">&lt;&lt;</span> <span style="color:#000">endl</span><span style="color:#000;font-weight:bold">;};</span>
 <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">void</span> 
-<span style="color:#000">DoSomething</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Window</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">w</span><span style="color:#000;font-weight:bold">)</span>
-
+<span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">DoSomething</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Window</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">w</span><span style="color:#000;font-weight:bold">)</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">w</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">getName</span><span style="color:#000;font-weight:bold">();</span>
     <span style="color:#8f5902;font-style:italic">// w-&gt;scroll();  // class &#34;Window&#34; has no member scroll
@@ -284,12 +259,10 @@
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">if</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sw</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">sw</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">scroll</span><span style="color:#000;font-weight:bold">();</span>
 <span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#204a87;font-weight:bold">int</span> 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
-    <span style="color:#000">Window</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">w</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;plain window&#34;</span><span style="color:#000;font-weight:bold">);</span>
-    <span style="color:#000">ScrollWindow</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">sw</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">ScrollWindow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06"></span><span style="color:#4e9a06">&#34;scroll window&#34;</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000">Window</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">w</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Window</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;plain window&#34;</span><span style="color:#000;font-weight:bold">);</span>
+    <span style="color:#000">ScrollWindow</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">sw</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">ScrollWindow</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#34;scroll window&#34;</span><span style="color:#000;font-weight:bold">);</span>
 
     <span style="color:#000">DoSomething</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">w</span><span style="color:#000;font-weight:bold">);</span>
     <span style="color:#000">DoSomething</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">sw</span><span style="color:#000;font-weight:bold">);</span>
@@ -314,21 +287,19 @@
 </span><span style="color:#8f5902;font-style:italic"></span>
 <span style="color:#204a87;font-weight:bold">using</span> <span style="color:#204a87;font-weight:bold">namespace</span> <span style="color:#000">std</span><span style="color:#000;font-weight:bold">;</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">private</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">id</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">show_id</span><span style="color:#000;font-weight:bold">(){}</span>
 <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">coding</span><span style="color:#000;font-weight:bold">(){}</span>
 <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">int</span> 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">Employee</span> <span style="color:#000">employee</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000">Programmer</span> <span style="color:#000">programmer</span><span style="color:#000;font-weight:bold">;</span>
@@ -361,23 +332,21 @@
 <p>在前面的转型的示例中，Employee 调用了不应该得到的方法 coding()。因此，在我们使用方法 coding() 之前，我们需要检查指针是否指向 Programmer 对象。</p>
 
 <p>以下是显示如何使用typeid的新代码：</p>
-<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">private</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">id</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">show_id</span><span style="color:#000;font-weight:bold">(){}</span>
 <span style="color:#000;font-weight:bold">};</span>
 
-<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">class</span><span style="color:#a40000"> </span><span style="color:#000">Programmer</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#000">Employee</span> <span style="color:#000;font-weight:bold">{</span>
 <span style="color:#204a87;font-weight:bold">public</span><span style="color:#ce5c00;font-weight:bold">:</span>
     <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000">coding</span><span style="color:#000;font-weight:bold">(){}</span>
 <span style="color:#000;font-weight:bold">};</span>
 
 <span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;typeinfo&gt;</span><span style="color:#8f5902;font-style:italic">
 </span><span style="color:#8f5902;font-style:italic"></span>
-<span style="color:#204a87;font-weight:bold">int</span> 
-<span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
-
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">main</span><span style="color:#000;font-weight:bold">()</span>
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#000">Employee</span> <span style="color:#000">lee</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000">Programmer</span> <span style="color:#000">park</span><span style="color:#000;font-weight:bold">;</span>
@@ -431,12 +400,16 @@
 
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-1900757-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-1900757-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

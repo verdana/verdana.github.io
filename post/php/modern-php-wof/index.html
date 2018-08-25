@@ -23,7 +23,7 @@
     
     <code><span class="post-lastmod">2018, Apr 10</span></code>
     
-    <code><span>Blogs </span><span class="post-count">10</span></code>
+    <code><span>Blogs </span><span class="post-count">11</span></code>
     <code><span>Views </span><span class="post-views">999</span></code>
 </header>
 
@@ -168,7 +168,7 @@
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#000">$pdo</span><span style="color:#000;font-weight:bold">;</span>
 
-    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">__construct</span><span style="color:#000;font-weight:bold">()</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">__construct</span><span style="color:#000;font-weight:bold">()</span>
     <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">pdo</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">\PDO</span><span style="color:#000;font-weight:bold">(</span><span style="color:#4e9a06">&#39;pgsql:host=localhost;dbname=postgres&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;user&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;pass&#39;</span><span style="color:#000;font-weight:bold">);</span>
     <span style="color:#000;font-weight:bold">}</span>
@@ -184,7 +184,7 @@
 <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#000">$pdo</span><span style="color:#000;font-weight:bold">;</span>
 
-    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">__construct</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">\PDO</span> <span style="color:#000">$pdo</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">__construct</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">\PDO</span> <span style="color:#000">$pdo</span><span style="color:#000;font-weight:bold">)</span>
     <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">pdo</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">$pdo</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">}</span>
@@ -203,7 +203,7 @@
 
 <p>打开 <code>public/index.php</code>，更新下代码，首先需要配置容器：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
-<span style="color:#204a87;font-weight:bold">use</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">DI\create</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#204a87;font-weight:bold">use</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">DI\create</span><span style="color:#000;font-weight:bold">;</span>
 <span style="color:#204a87;font-weight:bold">use</span> <span style="color:#000">DI\ContainerBuilder</span><span style="color:#000;font-weight:bold">;</span>
 
 <span style="color:#204a87;font-weight:bold">require_once</span> <span style="color:#000">dirname</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">__DIR__</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#ce5c00;font-weight:bold">.</span> <span style="color:#4e9a06">&#39;/vendor/autoload.php&#39;</span><span style="color:#000;font-weight:bold">;</span>
@@ -252,7 +252,7 @@
     <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#000">$options</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#000">$pdo</span><span style="color:#000;font-weight:bold">;</span>
 
-    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">__construct</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">$dsn</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">string</span> <span style="color:#000">$user</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">string</span> <span style="color:#000">$password</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">array</span> <span style="color:#000">$options</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">__construct</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">string</span> <span style="color:#000">$dsn</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">string</span> <span style="color:#000">$user</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">string</span> <span style="color:#000">$password</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">array</span> <span style="color:#000">$options</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">)</span>
     <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">params</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span><span style="color:#000">$dsn</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$user</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">$password</span><span style="color:#000;font-weight:bold">];</span>
         <span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">options</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">array</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000">$options</span><span style="color:#000;font-weight:bold">;</span>
@@ -262,7 +262,7 @@
         <span style="color:#000;font-weight:bold">}</span>
     <span style="color:#000;font-weight:bold">}</span>
 
-    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">connect</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">connect</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span>
     <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">pdo</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
             <span style="color:#204a87;font-weight:bold">return</span><span style="color:#000;font-weight:bold">;</span>
@@ -276,12 +276,12 @@
         <span style="color:#000;font-weight:bold">}</span>
     <span style="color:#000;font-weight:bold">}</span>
 
-    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">disconnect</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">disconnect</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span>
     <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">pdo</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">}</span>
 
-    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">getPDO</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">PDO</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">getPDO</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">PDO</span>
     <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">pdo</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">}</span>
@@ -439,13 +439,13 @@
     <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#000">$connection</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#204a87;font-weight:bold">private</span> <span style="color:#000">$response</span><span style="color:#000;font-weight:bold">;</span>
 
-    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">__construct</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Connection</span> <span style="color:#000">$conn</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ResponseInterface</span> <span style="color:#000">$response</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">__construct</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Connection</span> <span style="color:#000">$conn</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">ResponseInterface</span> <span style="color:#000">$response</span><span style="color:#000;font-weight:bold">)</span>
     <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">connection</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">$conn</span><span style="color:#000;font-weight:bold">;</span>
         <span style="color:#000">$this</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">response</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">$response</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">}</span>
 
-    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">__invoke</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">ServerRequestInterface</span> <span style="color:#000">$request</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">ResponseInterface</span>
+    <span style="color:#204a87;font-weight:bold">public</span> <span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">__invoke</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">ServerRequestInterface</span> <span style="color:#000">$request</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">ResponseInterface</span>
     <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#8f5902;font-style:italic">// $_GET
 </span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000">var_dump</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">$request</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#c4a000">getQueryParams</span><span style="color:#000;font-weight:bold">());</span>
@@ -504,12 +504,16 @@
 
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-1900757-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-1900757-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 

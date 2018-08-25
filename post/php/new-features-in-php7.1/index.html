@@ -23,7 +23,7 @@
     
     <code><span class="post-lastmod">2018, Mar 31</span></code>
     
-    <code><span>Blogs </span><span class="post-count">10</span></code>
+    <code><span>Blogs </span><span class="post-count">11</span></code>
     <code><span>Views </span><span class="post-views">999</span></code>
 </header>
 
@@ -43,21 +43,21 @@
 
 <p>示例如下：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#8f5902;font-style:italic">// Do something
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// valid
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 
 <span style="color:#8f5902;font-style:italic">// OR
 </span><span style="color:#8f5902;font-style:italic"></span>
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#8f5902;font-style:italic">// Do something
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// valid
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 </code></pre></div>
 <p>return null 是不允许的。</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">should_return_nothing</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">void</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#8f5902;font-style:italic">// Do something
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// Fatal error: A void function must not return a value
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
@@ -66,7 +66,7 @@
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">Fatal error:  A void function must not return a value</code></pre></div>
 <p>需要注意的是 void 只能用于声明函数返回类型，不能当作参数类型：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">foobar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">void</span> <span style="color:#000">$foo</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">foobar</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">void</span> <span style="color:#000">$foo</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#8f5902;font-style:italic">// Fatal error: void cannot be used as a parameter type
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 </code></pre></div>
@@ -74,21 +74,21 @@
 
 <p>参数和返回值的类型声明可以通过在类型名称前添加一个问号来标记为空。 也就是说，除了指定的类型外，null 也可以作为参数传递，或者作为值返回。 可空类型可以用在任何需要类型声明的地方，但要遵守一些继承规则。</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span>  <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span>  <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">;</span>    <span style="color:#8f5902;font-style:italic">//ok
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span>  <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span>  <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#0000cf;font-weight:bold">42</span><span style="color:#000;font-weight:bold">;</span>      <span style="color:#8f5902;font-style:italic">// ok
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">answer</span><span style="color:#000;font-weight:bold">()</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">int</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#204a87;font-weight:bold">stdclass</span><span style="color:#000;font-weight:bold">();</span>
     <span style="color:#8f5902;font-style:italic">// Fatal error: Uncaught TypeError: Return value of
 </span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">// answer() must be of the type integer or null
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
 </code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">say</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">string</span> <span style="color:#000">$msg</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">say</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">string</span> <span style="color:#000">$msg</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
     <span style="color:#204a87;font-weight:bold">if</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">$msg</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span>
         <span style="color:#204a87;font-weight:bold">echo</span> <span style="color:#000">$msg</span><span style="color:#000;font-weight:bold">;</span>
     <span style="color:#000;font-weight:bold">}</span>
@@ -101,12 +101,12 @@
 </span><span style="color:#8f5902;font-style:italic"></span></code></pre></div>
 <p>注意：具有可空类型的参数不能使用默认值。如果省略参数值，那么该参数值不会默认为 null，并会导致错误：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">f</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">callable</span> <span style="color:#000">$p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{}</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">f</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">?</span><span style="color:#000">callable</span> <span style="color:#000">$p</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{}</span>
 <span style="color:#000">f</span><span style="color:#000;font-weight:bold">();</span> <span style="color:#8f5902;font-style:italic">// invalid; function f does not have a default
 </span><span style="color:#8f5902;font-style:italic"></span></code></pre></div>
 <p>PHP的现有语义允许为参数提供一个空的默认值，以使其可为空或可选：</p>
 <div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-php" data-lang="php"><span style="color:#8f5902;font-style:italic">&lt;?php</span>
-<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#ce5c00;font-weight:bold"></span><span style="color:#000">foo_default</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Bar</span> <span style="color:#000">$bar</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{}</span>
+<span style="color:#204a87;font-weight:bold">function</span> <span style="color:#000">foo_default</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">Bar</span> <span style="color:#000">$bar</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{}</span>
 
 <span style="color:#000">foo_default</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">Bar</span><span style="color:#000;font-weight:bold">);</span>   <span style="color:#8f5902;font-style:italic">// valid
 </span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000">foo_default</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">null</span><span style="color:#000;font-weight:bold">);</span>      <span style="color:#8f5902;font-style:italic">// valid
@@ -210,12 +210,16 @@
 
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-1900757-1', 'auto');
-ga('send', 'pageview');
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-1900757-1', 'auto');
+	
+	ga('send', 'pageview');
+}
 </script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 
 
 
