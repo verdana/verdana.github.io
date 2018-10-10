@@ -23,7 +23,7 @@
     
     <code><span class="post-lastmod">2018, Mar 31</span></code>
     
-    <code><span>Blogs </span><span class="post-count">11</span></code>
+    <code><span>Blogs </span><span class="post-count">12</span></code>
     <code><span>Views </span><span class="post-views">-</span></code>
 </header>
 
@@ -59,9 +59,9 @@ a: (refcount=1, is_ref=0)=&#39;new string&#39;</code></pre></div>
 a: (refcount=0, is_ref=0)=&#39;new string&#39;
 a: (refcount=0, is_ref=0)=&#39;new string&#39;
 a: (refcount=0, is_ref=0)=&#39;new string&#39;</code></pre></div>
-<p>哈，实际上这是 PHP7 的 GC 机制更加完善的表现。</p>
+<p>实际上这是 PHP7 的 GC 机制更加完善的表现。</p>
 
-<p>在 PHP7 中变量会根据类型的不同，而使用或者不使用引用计数。</p>
+<p>在 PHP7 中变量会根据类型的不同使用或者不使用引用计数。</p>
 
 <ol>
 <li>简单的数据类型，null, bool, int, float 不会使用。</li>
@@ -73,15 +73,15 @@ a: (refcount=0, is_ref=0)=&#39;new string&#39;</code></pre></div>
 
 <p>以字符串来说明，如果你使用的是非线程安全 (NTS) 的 PHP7 版本，那么所有的字符串实际上都是内部字符串 &ldquo;interned string&rdquo;，这些字符串是唯一且不重复的，并且在整个 request 生命周期中，这些字符串都是始终存在的，所以无需使用引用计数。</p>
 
-<p>如果你用到了 opcache，那么内部字符串实际上全部存储在共享内存中，因为没有同步机制，而 PHP 的引用计数技术又是非原子性的，所以这种情况下也是无法使用引用计数的。</p>
+<p>如果你用到了 OPCache，那么内部字符串实际上全部存储在共享内存中，因为没有同步机制，PHP 的引用计数技术又是非原子性的，所以这种情况下也是无法使用引用计数的。</p>
 
-<p>内部字串有个临时的 refcount = 1，但是即使用 xdebug 也看不到。</p>
+<p>内部字串有个临时的 refcount = 1，但是即便使用 xdebug 也看不到。</p>
 
 <h3 id="不可变数组">不可变数组</h3>
 
-<p>Immutable array 是 PHP7 opcache 中引入的一项优化机制。用在那些在编译期间就能完全确定元素值的数组上。所以 immutable array 只能包含，字符串，浮点数，整形和数组这样的元素。这项优化机制保证了在循环中，数组只会被创建一次，这样可以大幅度的减少内存占用。</p>
+<p>Immutable Array 是 PHP7 OPCache 中引入的一项优化机制。用在那些在编译期间就能完全确定元素值的数组上。所以 Immutable Array 只能包含字符串，浮点数，整形和数组这样的元素。这项优化机制保证了在循环中，数组只会被创建一次，这样可以大幅度的减少内存占用。</p>
 
-<p>其特点包括：</p>
+<p>特点包括：</p>
 
 <ul>
 <li>不使用引用计数</li>
@@ -97,11 +97,11 @@ a: (refcount=0, is_ref=0)=&#39;new string&#39;</code></pre></div>
 </code></pre></div>
 <p>PHP5 中，相同的数组会被复制 10000 次，可见这样是非常浪费内存的。在实际的场景中，我们也是可能会遇到在循环中处理大数组的情况的。</p>
 
-<p>PHP7 呢，opcache 会标记数组为 immutable：数组仅会被创建一次，内存指针被其它可能用到的地方共享，这样就起到了节约内存的作用。</p>
+<p>PHP7 呢，OPCache 会标记数组为 immutable：数组仅会被创建一次，内存指针被其它可能用到的地方共享，这样就起到了节约内存的作用。</p>
 
-<p>尽管上面提到了 immutable array 不使用引用计数，但是实际上内部结构中 refcount 还是有个固定的值 2，这样保证了 immutable array 在需要改变时，产生一个硬拷贝并改变这个新的数组，以保证原数组的完整性。</p>
+<p>尽管上面提到了 Immutable Array 不使用引用计数，但是实际上内部结构中 refcount 还是有个固定的值 2，这样保证了 Immutable Array 在需要改变时，产生一个硬拷贝并改变这个新的数组，以保证原数组的完整性。</p>
 
-<p>这项优化技术是 opcache 的一部分，所以必须激活 opcache 扩展才可以使用。</p>
+<p>这项优化技术是 OPCache 的一部分，所以必须激活 OPCache 扩展才可以使用。</p>
         </article>
 
         <footer class="post-footer">

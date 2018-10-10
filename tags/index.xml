@@ -78,7 +78,7 @@
     <item>
       <title>Php</title>
       <link>http://phpvim.net/tags/php/</link>
-      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>http://phpvim.net/tags/php/</guid>
       <description></description>
@@ -126,6 +126,15 @@
       <pubDate>Thu, 01 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>http://phpvim.net/tags/wish/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Yield</title>
+      <link>http://phpvim.net/tags/yield/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/tags/yield/</guid>
       <description></description>
     </item>
     

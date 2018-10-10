@@ -31,6 +31,17 @@
     </item>
     
     <item>
+      <title>PHP 的 yield 关键字</title>
+      <link>http://phpvim.net/post/php/php-yield/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/post/php/php-yield/</guid>
+      <description>&lt;p&gt;PHP 5.5 中加入了生成器语法，但是我一直都很少使用，基本上和其它语言的实现类似，这里做一个简单的总结。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>我常用的 Git 命令</title>
       <link>http://phpvim.net/post/git/my-most-used-git-cmds/</link>
       <pubDate>Thu, 03 May 2018 00:00:00 +0000</pubDate>
