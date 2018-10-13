@@ -67,6 +67,24 @@
     </item>
     
     <item>
+      <title>Laravel</title>
+      <link>http://phpvim.net/tags/laravel/</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/tags/laravel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Mail</title>
+      <link>http://phpvim.net/tags/mail/</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/tags/mail/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Nginx</title>
       <link>http://phpvim.net/tags/nginx/</link>
       <pubDate>Mon, 02 Apr 2018 00:00:00 +0000</pubDate>
@@ -78,7 +96,7 @@
     <item>
       <title>Php</title>
       <link>http://phpvim.net/tags/php/</link>
-      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>http://phpvim.net/tags/php/</guid>
       <description></description>

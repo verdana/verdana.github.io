@@ -31,6 +31,15 @@
     </item>
     
     <item>
+      <title>使用 Laravel 发送邮件</title>
+      <link>http://phpvim.net/post/php/laravel-mail/</link>
+      <pubDate>Fri, 12 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>http://phpvim.net/post/php/laravel-mail/</guid>
+      <description>前些天帮助朋友弄了一个简单的网站，上线以后发现朋友用的是百度推广送的一个主机空间，PHP 版本太低，甚至不支持邮件发送功能。没有办法只有将整个</description>
+    </item>
+    
+    <item>
       <title>PHP 的 yield 关键字</title>
       <link>http://phpvim.net/post/php/php-yield/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
